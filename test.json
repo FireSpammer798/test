@@ -1,0 +1,87 @@
+{
+  "655263219459293210": {
+    "coins": 0
+    "prestiges": 0,
+    "armor": {
+      "helmet": {
+        "name": "Starter Helmet",
+        "health": 8,
+        "defense:": 0.987258545,
+        "sell": 0
+      },
+      "chestplate": {
+        "name": "Starter Chestplate",
+        "health": 8,
+        "defense:": 0.987258545,
+        "sell": 0
+      },
+      "leggings": {
+        "name": "Starter Leggings",
+        "health": 8,
+        "defense:": 0.987258545,
+        "sell": 0
+      },
+      "boots": {
+        "name": "Starter Boots",
+        "health": 8,
+        "defense:": 0.987258545,
+        "sell": 0
+      }
+    },
+    "tools": {
+      "weapon": {
+        "name": "Starter Sword",
+        "sell": 0,
+        "mobs": 1,
+        "chances": {
+          "zombie": 100,
+          "ghost": 0,
+          "vampire": 0,
+					"witch": 0,
+          "reaper": 0
+        }
+      },
+      "hoe": {
+        "name": "Starter Hoe",
+        "sell": 0,
+        "crops": 1,
+        "chances": {
+          "cactus": 100,
+          "wheat": 0,
+          "corn": 0,
+          "watermelon": 0,
+          "pumpkin": 0
+        }
+      },
+      "pickaxe": {
+        "name": "Starter Pickaxe",
+        "ores": 1,
+        "chances": {
+          "copper": 100,
+          "gold": 0,
+          "diamond": 0,
+          "titanium": 0,
+          "uranium": 0
+        }
+      },
+      "axe": {
+        "name": "Starter Axe",
+        "woods": 1,
+        "chances": {
+          "acacia wood": 100,
+          "birch wood": 0,
+          "dark oak wood": 0,
+          "jungle wood": 0,
+          "oak wood": 0,
+          "spruce wood": 0
+        }
+      }
+    },
+    "inventory": {
+			"bone": 0,
+			"mist": 0,
+			"fang": 0,
+			""
+    }
+  }
+}
