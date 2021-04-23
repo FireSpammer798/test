@@ -8,7 +8,8 @@ class shop(main.commands.Cog):
 		values = []
 		for item in list(main.storage.buyables):
 			buyable = main.storage.buyables[item]
-			names.append(f'{ctx.prefix}buy {item} [amount]')
+			names.append(f'''{ctx.prefix}buy {item} [amount]
+{ctx.prefix}purchase {item} [amount]''')
 			values.append(f'This will let you buy an amount of {buyable["plural"]} for {"{:,}".format(buyable["buy"])} coins.')
 		await main.deletable(self.mm,ctx,main.complexEmbed(ctx,names,values))
 def setup(mm):

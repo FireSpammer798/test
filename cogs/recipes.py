@@ -17,6 +17,6 @@ class recipes(main.commands.Cog):
 		if names != []:
 			await main.deletable(self.mm,ctx,main.complexEmbed(ctx,names,values))
 		else:
-			await main.deletable(self.mm,ctx,main.Embed(ctx,'Recipe Error',f'So far, none of my craftables require any amount of {main.storage.buyables[item]["plural"]}. Please join my support server at __https://discord.gg/7EZfMCG2Dy__ for more information.'))
+			await main.deletable(self.mm,ctx,main.Embed(ctx,'Recipe Error',f'So far, none of my craftables require any amount of {main.storage.buyables[item]["plural"]}. Please join my support server at __https://discord.gg/yzvKeCWfg4__ for more information.'))
 def setup(mm):
 	mm.add_cog(recipes(mm))

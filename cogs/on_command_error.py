@@ -5,14 +5,13 @@ class on_command_error(commands.Cog):
 		self.mm = mm
 	@commands.Cog.listener()
 	async def on_command_error(self,context,error):
-		raise error
 		message = None
 		if isinstance(error,commands.CommandNotFound):
 			return
 		if isinstance(error,commands.MissingRequiredArgument):
-			message = await context.send(embed=main.makeEmbed(context,f'{context.command.aliases[0]} Error','You are missing a required argument!'))
+			message = await context.send(embed=main.Embed(context,f'{context.command.aliases[0]} Error','You are missing a required argument!'))
 		elif isinstance(error,commands.CommandOnCooldown):
-			await context.reply(embed=main.makeEmbed(context,f'{context.command.aliases[0]} Error',f'{context.author.mention}, you did this too recently. Try again in {str(error)[34:len(str(error))-1]} seconds.'))
+			await context.reply(embed=main.Embed(context,f'{context.command.aliases[0]} Error',f'{context.author.mention}, you did this too recently. Try again in {str(error)[34:len(str(error))-1]} seconds.'))
 		elif isinstance(error,commands.CheckFailure):
 			return
 		else:

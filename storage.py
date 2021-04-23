@@ -1,32 +1,26 @@
-import random,json,discord,math
+import random,json,discord,math,time
+from discord.ext import commands,tasks
 buyables = {
-  'dragon blood': {
-    'chance': 0.01,
-    'buy': 30000,
-    'sell': 27000,
-    'single': 'drop of Dragon Blood',
-    'plural': 'drops of Dragon Blood'
-  },
-  'mist': {
-    'chance': 0.02,
-    'buy': 1000,
-    'sell': 900,
-    'single': 'Mist',
-    'plural': 'Mist'
-  },
-  'gold': {
-    'chance': 30,
-    'buy': 10,
-    'sell': 9,
-    'single': 'bar of Gold',
-    'plural': 'bars of Gold'
-  },
-	'ruby': {
+	'bone': {
 		'buy': 1000,
-		'sell': 900,
-		'single': 'Ruby',
-		'plural': 'Rubies'
+		'single': 'Bone',
+		'plural': 'Bones'
 	},
+	'mist': {
+		'buy': 5000,
+		'single': 'Mist',
+		'plural': 'Mist'
+	},
+	'fang': {
+		'buy': 10000,
+		'single': 'Fang',
+		'plural': 'Fang'
+	},
+	'flamer': {
+		'buy': 25000,
+		'single': 'Flamer',
+		'plural': 'Flamers'
+	}
 }
 swords = {
 	'dragon sword': {
@@ -36,8 +30,7 @@ swords = {
 		},
 		'chances': {
 		  'zombie': 45,
-		  'dragon': 20,
-		  'ghost': 25
+		  
 		},
 		'mobs': 35
 	},
@@ -83,36 +76,7 @@ def userRegister(user:discord.User):
 		profiles = json.load(file)
 	if str(user.id) in list(profiles) or user.bot == True:
 		return
-	profiles[str(user.id)] = {}
-	profile = profiles[str(user.id)]
-	profile['coins'] = 0
-	profile['prestiges'] = 0
-	profile['armor'] = {}
-	armor = profile['armor']
-	armor['helmet'] = {}
-	helmet = armor['helmet']
-	armor['chestplate'] = {}
-	armor['leggings'] = {}
-	armor['boots'] = {}
-	profile['tools'] = {}
-	tools = profile['tools']
-	tools['weapon'] = None
-	tools['hoe'] = None
-	tools['pickaxe'] = None
-	tools['axe'] = None
-	profile['inventory'] = {}
-	inventory = profile['inventory']
-	inventory['wood'] = 0
-	inventory['wheat'] = 0
-	inventory['pumpkins'] = 0
-	inventory['rubies'] = 0
-	inventory['diamonds'] = 0
-	inventory['emeralds'] = 0
-	inventory['gold'] = 0
-	inventory['polished wood'] = 0
-	inventory['dragon blood'] = 0
-	inventory['bone'] = 0
-	inventory['mist'] = 0
+	profiles[str(user.id)] = {'coins': 0, 'prestiges': 0, 'armor': {'helmet': {'name': 'Starter Helmet', 'health': 8, 'defense:': 0.987258545, 'sell': 0}, 'chestplate': {'name': 'Starter Chestplate', 'health': 8, 'defense:': 0.987258545, 'sell': 0}, 'leggings': {'name': 'Starter Leggings', 'health': 8, 'defense:': 0.987258545, 'sell': 0}, 'boots': {'name': 'Starter Boots', 'health': 8, 'defense:': 0.987258545, 'sell': 0}}, 'tools': {'weapon': {'name': 'Starter Sword', 'sell': 0, 'mobs': 1, 'chances': {'zombie': 100, 'ghost': 0, 'vampire': 0, 'blazer': 0}}, 'hoe': {'name': 'Starter Hoe', 'sell': 0, 'crops': 1, 'chances': {'wheat': 100, 'corn': 0, 'watermelon': 0, 'pumpkin': 0}}, 'pickaxe': {'name': 'Starter Pickaxe', 'ores': 1, 'chances': {'copper': 100, 'gold': 0, 'diamond': 0, 'titanium': 0}}, 'axe': {'name': 'Starter Axe', 'woods': 1, 'chances': {'acacia wood': 100, 'birch wood': 0, 'jungle wood': 0, 'oak wood': 0, 'spruce wood': 0}}}, 'inventory': {'bone': 0, 'mist': 0, 'fang': 0, 'flamer': 0, 'copper': 0, 'gold': 0, 'diamond': 0, 'titanium': 0, 'acacia wood': 100, 'birch wood': 0, 'oak wood': 0, 'spruce wood': 0}}
 	with open('profiles.json','w') as file:
 		json.dump(profiles,file,indent=2)
 craftables = {
